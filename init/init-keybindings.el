@@ -15,6 +15,11 @@
    "e" 'eval-buffer
    "|" 'evil-window-vsplit
    "_" 'evil-window-split
-   "0" 'evil-window-delete))
+   "0" 'evil-window-delete
+   "1" 'delete-other-windows
+   "k" 'kill-buffer))
+
+(dolist (key '("\C-xk" "\C-xb" "\C-xf" "\C-x0" "\C-x1" "\C-x2" "\C-x3"))
+  (global-unset-key key))
 
 (provide 'init-keybindings)

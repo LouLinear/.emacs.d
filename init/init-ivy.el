@@ -1,8 +1,8 @@
 ;;; #init-ivy.el
-
+(use-package hydra)
 (use-package ivy
-  :diminish (ivy-mode . "")
-  :init (ivy-mode 1) ; globally at startup
+  :init (ivy-mode 1)
+  :diminish ivy-mode
   :config
   (setq ivy-use-virtual-buffers t)
   (setq ivy-height 20)
@@ -22,6 +22,7 @@
    ("<f2> u"  . counsel-unicode-char)
    ("C-c C-r" . ivy-resume)))     ; Resume last Ivy-based completion
 
+; more counsel bindings
 (general-define-key
  :states '(normal visual)
  :prefix "SPC"

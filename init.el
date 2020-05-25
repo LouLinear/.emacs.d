@@ -19,11 +19,13 @@
 ;; TODO: JIRA plugins?
 
 ;; other configs
-(setq delete-old-versions t) ; delete excess backups silently
-(setq version-control t)
-(setq vc-make-backup-files t)
-(setq vc-follow-symlinks t)
-(setq backup-directory-alist `(("~/.emacs.d/backups")))
+(setq delete-old-versions t
+      kept-new-versions 1
+      kept-old-versions 1
+      version-control t
+      vc-make-backup-files t
+      vc-follow-symlinks t)
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 (setq inhibit-startup-screen t)
 (setq ring-bell-function 'ignore) ; silent bell on mistakes
@@ -40,7 +42,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (moe-theme which-key flycheck company ace-window evil general counsel use-package))))
+    (ivy-hydra hydra moe-theme which-key flycheck company ace-window evil general counsel use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
