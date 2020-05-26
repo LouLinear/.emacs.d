@@ -19,7 +19,10 @@
    "1" 'delete-other-windows
    "k" 'kill-buffer))
 
-(dolist (key '("\C-xk" "\C-xb" "\C-xf" "\C-x0" "\C-x1" "\C-x2" "\C-x3"))
+(dolist (key '("\C-xk" "\C-xb" "\C-xf"         ; buffers
+	       "\C-x0" "\C-x1" "\C-x2" "\C-x3" ; split windows
+	       "\C-w"                          ; evil windows (replaced with hydra)
+	       ))
   (global-unset-key key))
 
 (provide 'init-keybindings)

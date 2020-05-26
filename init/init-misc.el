@@ -8,12 +8,6 @@
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   (general-define-key
    :states '(normal visual)
-   :prefix "SPC W"
-   "d" 'ace-delete-window
-   "D" 'ace-delete-other-windows
-   "s" 'ace-swap-window)
-  (general-define-key
-   :states '(normal visual)
    :prefix "SPC"
    "w" 'ace-window)
   )
