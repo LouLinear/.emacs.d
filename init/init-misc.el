@@ -9,8 +9,7 @@
   (general-define-key
    :states '(normal visual)
    :prefix "SPC"
-   "w" 'ace-window)
-  )
+   "w" 'ace-window))
 
 ;; which key, make shortcuts discoverable
 (use-package which-key
@@ -29,5 +28,16 @@
   :ensure t
   :config
   (moe-dark))
+
+(use-package magit
+  :ensure t
+  :after general
+  :config
+  (general-define-key
+   :states '(normal visual)
+   :prefix "SPC"
+   "g" 'magit-status))
+
+(use-package evil-magit)
 
 (provide 'init-misc)
