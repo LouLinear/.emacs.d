@@ -15,8 +15,10 @@
 ;; auto completion, company as frontend, probably will set up lsp
 (require 'init-auto-completion)
 ;; flycheck, which key, moe theme
+(require 'init-clojure)
 (require 'init-misc)
-;; TODO: JIRA plugins?
+
+(setq org-startup-truncated nil)
 
 ;; other configs
 (setq delete-old-versions t
@@ -42,7 +44,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ivy-hydra hydra moe-theme which-key flycheck company ace-window evil general counsel use-package))))
+    (cider evil-magit magit ivy-hydra hydra moe-theme which-key flycheck company ace-window evil general counsel use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

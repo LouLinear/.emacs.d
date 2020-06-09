@@ -13,6 +13,7 @@
    :prefix "SPC"
    "b" 'switch-to-buffer
    "e" 'eval-buffer
+   "r" 'eval-region
    "|" 'evil-window-vsplit
    "_" 'evil-window-split
    "0" 'evil-window-delete
