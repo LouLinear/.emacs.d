@@ -12,8 +12,6 @@
    :states '(normal visual)
    :prefix "SPC"
    "b" 'switch-to-buffer
-   "e" 'eval-buffer
-   "r" 'eval-region
    "|" 'evil-window-vsplit
    "_" 'evil-window-split
    "0" 'evil-window-delete
@@ -25,5 +23,14 @@
 	       "\C-w"                          ; evil windows (replaced with hydra)
 	       ))
   (global-unset-key key))
+
+;; elisp mode bindings
+(general-define-key
+ :keymap emacs-lisp-mode-map
+ :states '(normal visual)
+ :prefix "SPC"
+ "e" 'eval-buffer
+ "r" 'eval-region
+ "l" 'eval-last-sexp)
 
 (provide 'init-keybindings)

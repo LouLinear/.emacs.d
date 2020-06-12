@@ -5,7 +5,8 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(add-to-list 'load-path (expand-file-name "init" user-emacs-directory))
+(dolist (subdir '("init" "org_contrib"))
+  (add-to-list 'load-path (expand-file-name subdir user-emacs-directory)))
 ;; melpa elpa
 (require 'init-use-package)
 ;; general, evil mode + much more configurable spacemac like prefixes
@@ -14,8 +15,11 @@
 (require 'init-ivy)
 ;; auto completion, company as frontend, probably will set up lsp
 (require 'init-auto-completion)
-;; flycheck, which key, moe theme
+
 (require 'init-clojure)
+;; evil-org, some agenda global entries
+(require 'init-agenda)
+;; flycheck, which key, moe theme
 (require 'init-misc)
 
 (setq org-startup-truncated nil)
@@ -44,7 +48,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (cider evil-magit magit ivy-hydra hydra moe-theme which-key flycheck company ace-window evil general counsel use-package))))
+    (evil-org evil-org-mode cider evil-magit magit ivy-hydra hydra moe-theme which-key flycheck company ace-window evil general counsel use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
