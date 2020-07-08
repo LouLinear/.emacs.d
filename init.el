@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -16,11 +15,16 @@
 ;; auto completion, company as frontend, probably will set up lsp
 (require 'init-auto-completion)
 
-(require 'init-clojure)
 ;; evil-org, some agenda global entries
 (require 'init-agenda)
+
 ;; flycheck, which key, moe theme
 (require 'init-misc)
+
+(require 'init-cpp)
+
+;; (require 'init-clojure)
+;; (require 'init-slack)
 
 (setq org-startup-truncated nil)
 
@@ -37,17 +41,28 @@
 (setq ring-bell-function 'ignore) ; silent bell on mistakes
 (setq sentence-end-double-space nil)
 (setq-default fill-column 100) ; toggle wrapping text at this column
-(menu-bar-mode -1) ; no need for the menu bars - we've got key combos for that!
+;; pretty
+(set-default-font "Mono 10")
+(menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
+;; transparency
+(set-frame-parameter (selected-frame) 'alpha '(85 . 65))
+(add-to-list 'default-frame-alist '(alpha . (85 . 65)))
+;; roslaunch is xml
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; linum
 (global-linum-mode)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-collection evil-org evil-org-mode cider evil-magit magit ivy-hydra hydra moe-theme which-key flycheck company ace-window evil general counsel use-package)))
+   (quote
+    (company-lsp lsp-ui lsp ccls slack websocket request oauth2 emojify circe alert evil-org evil-org-mode cider evil-magit magit ivy-hydra hydra moe-theme which-key flycheck company ace-window evil general counsel use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

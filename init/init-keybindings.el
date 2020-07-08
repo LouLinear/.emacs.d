@@ -26,11 +26,22 @@
 
 ;; elisp mode bindings
 (general-define-key
- :keymap emacs-lisp-mode-map
+ :keymaps 'emacs-lisp-mode-map
  :states '(normal visual)
  :prefix "SPC"
  "e" 'eval-buffer
  "r" 'eval-region
  "l" 'eval-last-sexp)
+
+;; web browsing
+(general-define-key
+ :keymaps 'eww-mode-map
+ :states '(normal)
+ "TAB" 'shr-next-link
+ "H"   'eww-back-url
+ "L"   'eww-forward-url
+ "R"   'eww-readable
+ "r"   'eww-reload
+ "u"   'eww-copy-page-url)
 
 (provide 'init-keybindings)
