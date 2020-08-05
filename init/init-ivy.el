@@ -55,8 +55,7 @@ Move Splitter   ^^^Rotate     ^^^Split       ^^^^^Jump to
   ("_" evil-window-split)
   ("d" evil-window-delete)
   ("w" ace-window)
-  ("o" other-window)
-  )
+  ("o" other-window))
 
 ;; TODO: Generalize using macros
 (require 'windmove)

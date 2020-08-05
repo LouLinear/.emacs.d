@@ -42,4 +42,8 @@
   :config
   (evil-collection-init 'magit))
 
+(use-package yaml-mode)
+(use-package protobuf-mode)
+(use-package cmake-mode)
+
 (provide 'init-misc)
