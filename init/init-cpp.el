@@ -19,6 +19,7 @@
 (use-package lsp-mode
   :commands lsp
   :config
+  (setq lsp-enable-file-watchers nil)
 
   (general-define-key
    :states '(normal visual)
