@@ -2,7 +2,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+;(package-initialize)
 
 (dolist (subdir '("init" "org_contrib"))
   (add-to-list 'load-path (expand-file-name subdir user-emacs-directory)))
@@ -42,7 +42,7 @@
 (setq sentence-end-double-space nil)
 (setq-default fill-column 100) ; toggle wrapping text at this column
 ;; pretty
-(set-default-font "Mono 10")
+(set-frame-font "Mono 10")
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
