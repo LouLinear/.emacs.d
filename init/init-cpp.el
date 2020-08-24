@@ -8,6 +8,7 @@
 ;; clang format
 (use-package clang-format
   :config
+  (setq clang-format-executable "/usr/bin/clang-format")
   (general-define-key
    :keymaps 'c++-mode-map
    :states '(normal visual)
@@ -31,7 +32,9 @@
    :prefix "SPC s"
    :prefix-command 'my-lsp
    "f" 'lsp-ui-peek-find-definitions
-   "r" 'lsp-ui-peek-find-references))
+   "r" 'lsp-ui-peek-find-references)
+
+  )
 
 (use-package lsp-ui
   :commands lsp-ui-mode)
@@ -43,8 +46,25 @@
   (setq ccls-initialization-options
 	'(:index (:comments 0 :threads 2 :initialBlacklist ["."])
 	  :completion (:detailedLabel t)))
-  :hook
-  ((c-mode c++-mode cuda-mode) . (lambda() (require 'ccls) (lsp))))
+
+  :config
+  ;; register docker client
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-tramp-connection (lambda () (cons ccls-executable ccls-args)))
+    :major-modes '(c-mode c++-mode cuda-mode objc-mode)
+    :server-id 'ccls-docker
+    :multi-root nil
+    :remote? t
+    :notification-handlers
+    (lsp-ht ("$ccls/publishSkippedRanges" #'ccls--publish-skipped-ranges)
+            ("$ccls/publishSemanticHighlight" #'ccls--publish-semantic-highlight))
+    :initialization-options (lambda () ccls-initialization-options)
+    :library-folders-fn ccls-library-folders-fn))
+
+  :hook ((c-mode c++-mode cuda-mode) . (lambda() (require 'ccls) (lsp))))
+
+(use-package docker-tramp)
 
 (require 'json)
 
@@ -60,17 +80,17 @@
 	(catkin-find-root-dir (file-name-directory
 			       (directory-file-name current-directory))))))
 
-(defun catkin-aggregate-compilation-db (catkin-root-dir)
+(defun catkin-aggregate-compilation-db (catkin-root-dir &optional build-dir db-dest-dir)
   "goes into /path/to/catkin_root/build and aggregate all the compilation_commands.json
 of each package into a single file"
   (let* ((json-files (directory-files-recursively
-		      (concat catkin-root-dir "/build")
+		      (or build-dir (concat catkin-root-dir "/build"))
 		      "compile_commands\.json"))
 	 (json-alists (mapcar 'json-read-file json-files)))
     (write-region
      (json-encode (apply 'vconcat json-alists))
      nil
-     (concat catkin-root-dir "/compile_commands\.json"))))
+     (concat (or db-dest-dir catkin-root-dir) "/compile_commands\.json"))))
 
 
 (defun catkin-compile ()
@@ -88,13 +108,22 @@ of each package into a single file"
   (interactive)
   (catkin-aggregate-compilation-db (catkin-find-root-dir (buffer-file-name))))
 
+(defun catkin-gen-compile-db-pcvml-drive ()
+  (interactive)
+  (let ((catkin-root (catkin-find-root-dir (buffer-file-name))))
+  (catkin-aggregate-compilation-db
+   catkin-root
+   (concat catkin-root "/.work/build_arm64-drive")
+   (concat catkin-root "/src/pcvml"))))
+
 (general-define-key
  :keymaps 'c++-mode-map
  :states '(normal visual)
  :prefix "SPC c"
  :prefix-command 'my-cpp
  "c" 'catkin-compile
- "d" 'catkin-gen-compile-db)
+ "d" 'catkin-gen-compile-db
+ "p" 'catkin-gen-compile-db-pcvml-drive)
  
 
 (provide 'init-cpp)
