@@ -45,7 +45,8 @@
   :init
   (setq ccls-initialization-options
 	'(:index (:comments 0 :threads 2 :initialBlacklist ["."])
-	  :completion (:detailedLabel t)))
+		 :completion (:detailedLabel t)
+		 :cache (:directory "/home/ylin/ccls_cache")))
 
   :config
   ;; register docker client
@@ -61,6 +62,8 @@
             ("$ccls/publishSemanticHighlight" #'ccls--publish-semantic-highlight))
     :initialization-options (lambda () ccls-initialization-options)
     :library-folders-fn ccls-library-folders-fn))
+
+  (add-to-list 'lsp-language-id-configuration '(cuda-mode . "cu"))
 
   :hook ((c-mode c++-mode cuda-mode) . (lambda() (require 'ccls) (lsp))))
 
@@ -108,7 +111,7 @@ of each package into a single file"
   (interactive)
   (catkin-aggregate-compilation-db (catkin-find-root-dir (buffer-file-name))))
 
-(defun catkin-gen-compile-db-pcvml-drive ()
+(defun catkin-gen-compile-db-pcvml-arm ()
   (interactive)
   (let ((catkin-root (catkin-find-root-dir (buffer-file-name))))
   (catkin-aggregate-compilation-db
@@ -116,14 +119,23 @@ of each package into a single file"
    (concat catkin-root "/.work/build_arm64-drive")
    (concat catkin-root "/src/pcvml"))))
 
+(defun catkin-gen-compile-db-pcvml-x86 ()
+  (interactive)
+  (let ((catkin-root (catkin-find-root-dir (buffer-file-name))))
+  (catkin-aggregate-compilation-db
+   catkin-root
+   (concat catkin-root "/.work/build_x86-drive")
+   (concat catkin-root "/src/pcvml"))))
+
 (general-define-key
- :keymaps 'c++-mode-map
+ :keymaps '(c++-mode-map cmake-mode-map)
  :states '(normal visual)
  :prefix "SPC c"
  :prefix-command 'my-cpp
  "c" 'catkin-compile
  "d" 'catkin-gen-compile-db
- "p" 'catkin-gen-compile-db-pcvml-drive)
+ "a" 'catkin-gen-compile-db-pcvml-arm
+ "x" 'catkin-gen-compile-db-pcvml-arm)
  
 
 (provide 'init-cpp)
