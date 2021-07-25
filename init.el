@@ -46,9 +46,6 @@
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
-;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(85 . 65))
-(add-to-list 'default-frame-alist '(alpha . (85 . 65)))
 ;; roslaunch is xml
 (add-to-list 'auto-mode-alist '("\\.launch\\'" . xml-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))

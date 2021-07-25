@@ -111,22 +111,6 @@ of each package into a single file"
   (interactive)
   (catkin-aggregate-compilation-db (catkin-find-root-dir (buffer-file-name))))
 
-(defun catkin-gen-compile-db-pcvml-arm ()
-  (interactive)
-  (let ((catkin-root (catkin-find-root-dir (buffer-file-name))))
-  (catkin-aggregate-compilation-db
-   catkin-root
-   (concat catkin-root "/.work/build_arm64-drive")
-   (concat catkin-root "/src/pcvml"))))
-
-(defun catkin-gen-compile-db-pcvml-x86 ()
-  (interactive)
-  (let ((catkin-root (catkin-find-root-dir (buffer-file-name))))
-  (catkin-aggregate-compilation-db
-   catkin-root
-   (concat catkin-root "/.work/build_x86-drive")
-   (concat catkin-root "/src/pcvml"))))
-
 (general-define-key
  :keymaps '(c++-mode-map cmake-mode-map)
  :states '(normal visual)
