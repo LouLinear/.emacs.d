@@ -38,6 +38,8 @@
    :prefix "SPC"
    "g" 'magit-status))
 
-(use-package evil-magit)
+(use-package evil-collection
+  :config
+  (evil-collection-init 'magit))
 
 (provide 'init-misc)
