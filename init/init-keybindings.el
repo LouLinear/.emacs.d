@@ -1,5 +1,7 @@
 ;; all the keybindings (evil, general, ace window...)
 (use-package evil
+  :init
+  (setq evil-want-keybinding nil)
   :ensure t
   :config (evil-mode 1))
 

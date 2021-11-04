@@ -1,14 +1,14 @@
-(use-package evil-org
-  :ensure t
-  :after evil
-  :config
-  (progn
-    (add-hook 'org-mode-hook 'evil-org-mode)
-    (add-hook 'evil-org-mode-hook
-	      (lambda () (evil-org-set-key-theme
-			  '(additional calendar navigation shift))))
-    (require 'evil-org-agenda)
-    (evil-org-agenda-set-keys)))
+;; (use-package evil-org
+;;   :ensure t
+;;   :after evil
+;;   :config
+;;   (progn
+;;     (add-hook 'org-mode-hook 'evil-org-mode)
+;;     (add-hook 'evil-org-mode-hook
+;; 	      (lambda () (evil-org-set-key-theme
+;; 			  '(additional calendar navigation shift))))
+;;     (require 'evil-org-agenda)
+;;     (evil-org-agenda-set-keys)))
 
 (general-define-key
  :states '(normal visual)

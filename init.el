@@ -6,6 +6,7 @@
 
 (dolist (subdir '("init" "org_contrib"))
   (add-to-list 'load-path (expand-file-name subdir user-emacs-directory)))
+(add-to-list 'exec-path "/usr/local/bin")
 ;; melpa elpa
 (require 'init-use-package)
 ;; general, evil mode + much more configurable spacemac like prefixes
@@ -42,7 +43,7 @@
 (setq sentence-end-double-space nil)
 (setq-default fill-column 100) ; toggle wrapping text at this column
 ;; pretty
-(set-frame-font "Mono 10")
+(set-frame-font "MesloLGS NF 10")
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)

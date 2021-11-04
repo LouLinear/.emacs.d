@@ -46,15 +46,16 @@
   (setq ccls-initialization-options
 	'(:index (:comments 0 :threads 2 :initialBlacklist ["."])
 		 :completion (:detailedLabel t)
-		 :cache (:directory "/home/ylin/ccls_cache")))
+		 :cache (:directory "/home/yulin/ccls_cache")))
 
   :config
-  ;; register docker client
+  (setq ccls-args '("--log-file=/tmp/ccls.log"))
+  ;; register tramp client
   (lsp-register-client
    (make-lsp-client
     :new-connection (lsp-tramp-connection (lambda () (cons ccls-executable ccls-args)))
     :major-modes '(c-mode c++-mode cuda-mode objc-mode)
-    :server-id 'ccls-docker
+    :server-id 'ccls-tramp
     :multi-root nil
     :remote? t
     :notification-handlers
