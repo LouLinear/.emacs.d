@@ -1,10 +1,3 @@
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (dolist (subdir '("init" "org_contrib"))
   (add-to-list 'load-path (expand-file-name subdir user-emacs-directory)))
 ;; melpa elpa
@@ -16,7 +9,7 @@
 ;; auto completion, company as frontend, probably will set up lsp
 (require 'init-auto-completion)
 
-(require 'init-clojure)
+;; (require 'init-clojure)
 ;; evil-org, some agenda global entries
 (require 'init-agenda)
 ;; flycheck, which key, moe theme
@@ -40,7 +33,7 @@
 (menu-bar-mode -1) ; no need for the menu bars - we've got key combos for that!
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
-(global-linum-mode)
+(display-line-numbers-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,7 +1,10 @@
 ;; all the keybindings (evil, general, ace window...)
 (use-package evil
+  :init (setq evil-want-keybinding nil)
   :ensure t
-  :config (evil-mode 1))
+  :config
+  (evil-mode 1)
+  (evil-set-undo-system 'undo-redo))
 
 (use-package general
   :ensure t

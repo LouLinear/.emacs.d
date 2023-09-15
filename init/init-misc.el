@@ -40,6 +40,6 @@
 
 (use-package evil-collection
   :config
-  (evil-collection-init 'magit))
+  (evil-collection-init 'magit 'dired))
 
 (provide 'init-misc)
