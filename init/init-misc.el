@@ -38,8 +38,6 @@
    :prefix "SPC"
    "g" 'magit-status))
 
-(use-package evil-collection
-  :config
-  (evil-collection-init 'magit 'dired))
+(use-package dockerfile-mode)
 
 (provide 'init-misc)

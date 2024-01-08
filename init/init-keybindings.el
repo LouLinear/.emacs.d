@@ -6,6 +6,11 @@
   (evil-mode 1)
   (evil-set-undo-system 'undo-redo))
 
+(use-package evil-collection
+  :after (evil magit)
+  :config
+  (evil-collection-init '(magit dired)))
+
 (use-package general
   :ensure t
   :after evil
